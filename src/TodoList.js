@@ -5,12 +5,7 @@ import Todo from './Todo';
 class TodoList extends Component {
 
     render() {
-         const todos = this.props.todos.map(todo =>
-             <Todo
-                 key={todo.title}
-                 {...todo}
-             />
-         )
+         const todos = this.props.todos.map((todo, i) =><Todo key={i} {...todo}/>)
 
         // const todos = this.props.todos.title
         return (

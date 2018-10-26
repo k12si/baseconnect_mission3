@@ -1,40 +1,33 @@
 import React, { Component } from 'react'
 import TodoList from './TodoList'
 import Form from './Form'
-// import './css/App.css'
-
 
 class App extends Component {
 
     constructor() {
         super()
-        const todos = []
         this.state = {
-            todos: todos,
-            // countTodo: todos.length + 1,
+            todos: [],
         }
     }
 
     handleSubmit(e) {
-        console.log(e)
         e.preventDefault();
         const title = e.target.title.value;
         const todos = this.state.todos.slice()
-        // const countTodo = this.state.countTodo
 
-        todos.push({
-            // id: countTodo,
-            title: title,
-            done: false,
-        });
+        if(title!='') {
+
+            todos.push({
+                title: title,
+            });
+
+        }
 
         this.setState({ todos })
-        // this.setState({ countTodo: countTodo + 1 })
-
 
         e.target.title.value = '';
     }
-
 
     render() {
         return (
