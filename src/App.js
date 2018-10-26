@@ -1,28 +1,50 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import TodoList from './TodoList'
+import Form from './Form'
+// import './css/App.css'
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    constructor() {
+        super()
+        const todos = []
+        this.state = {
+            todos: todos,
+            // countTodo: todos.length + 1,
+        }
+    }
+
+    handleSubmit(e) {
+        console.log(e)
+        e.preventDefault();
+        const title = e.target.title.value;
+        const todos = this.state.todos.slice()
+        // const countTodo = this.state.countTodo
+
+        todos.push({
+            // id: countTodo,
+            title: title,
+            done: false,
+        });
+
+        this.setState({ todos })
+        // this.setState({ countTodo: countTodo + 1 })
+
+
+        e.target.title.value = '';
+    }
+
+
+    render() {
+        return (
+            <div className="app">
+                <h1>Todoリスト</h1>
+                <TodoList todos={this.state.todos} />
+                <Form handleSubmit={this.handleSubmit.bind(this)} />
+            </div>
+        );
+    }
 }
 
-export default App;
+export default App
